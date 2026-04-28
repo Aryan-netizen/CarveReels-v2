@@ -1,12 +1,12 @@
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
-const UserModel = require("../Models/UserModel");
+const FoodPartnerModel = require("../Models/FoodPartnerModel");
 
 
 const signup = async (req, res) => {
     try {
-        const { name, email, password } = req.body;
-        console.log('User Signup request body:', { name, email, password });
+        const { name, email, password, businessName } = req.body;
+        console.log('Food Partner Signup request body:', { name, email, password, businessName });
         console.log('File:', req.file);
         
         // Validate inputs
@@ -17,10 +17,10 @@ const signup = async (req, res) => {
             });
         }
         
-        const user = await UserModel.findOne({ email });
-        if (user) {
+        const foodPartner = await FoodPartnerModel.findOne({ email });
+        if (foodPartner) {
             return res.status(409)
-                .json({ message: 'User already exists, you can login', success: false });
+                .json({ message: 'Food Partner already exists, you can login', success: false });
         }
         
         let profileImage = null;
@@ -29,22 +29,23 @@ const signup = async (req, res) => {
             console.log('Profile image URL:', profileImage);
         }
         
-        const userModel = new UserModel({ 
+        const foodPartnerModel = new FoodPartnerModel({ 
             name, 
             email, 
             password,
-            image: profileImage
+            image: profileImage,
+            businessName: businessName || name
         });
         
-        userModel.password = await bcrypt.hash(password, 10);
-        await userModel.save();
+        foodPartnerModel.password = await bcrypt.hash(password, 10);
+        await foodPartnerModel.save();
         res.status(201)
             .json({
-                message: "User signup successfully",
+                message: "Food Partner signup successfully",
                 success: true
             })
     } catch (err) {
-        console.error('User Signup error:', err);
+        console.error('Food Partner Signup error:', err);
         res.status(500)
             .json({
                 message: "Internal server error",
@@ -58,19 +59,19 @@ const signup = async (req, res) => {
 const login = async (req, res) => {
     try {
         const { email, password } = req.body;
-        const user = await UserModel.findOne({ email });
+        const foodPartner = await FoodPartnerModel.findOne({ email });
         const errorMsg = 'Auth failed email or password is wrong';
-        if (!user) {
+        if (!foodPartner) {
             return res.status(403)
                 .json({ message: errorMsg, success: false });
         }
-        const isPassEqual = await bcrypt.compare(password, user.password);
+        const isPassEqual = await bcrypt.compare(password, foodPartner.password);
         if (!isPassEqual) {
             return res.status(403)
                 .json({ message: errorMsg, success: false });
         }
         const jwtToken = jwt.sign(
-            { email: user.email, _id: user._id, role: 'user' },
+            { email: foodPartner.email, _id: foodPartner._id, role: 'foodpartner' },
             process.env.JWT_SECRET,
             { expiresIn: '24h' }
         )
@@ -81,11 +82,11 @@ const login = async (req, res) => {
                 success: true,
                 jwtToken,
                 email,
-                name: user.name,
-                role: 'user'
+                name: foodPartner.name,
+                role: 'foodpartner'
             })
     } catch (err) {
-        console.error('User Login error:', err);
+        console.error('Food Partner Login error:', err);
         res.status(500)
             .json({
                 message: "Internal server error",

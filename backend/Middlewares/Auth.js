@@ -7,7 +7,9 @@ const ensureAuthenticated = (req, res, next) => {
             .json({ message: 'Unauthorized, JWT token is require' });
     }
     try {
-        const decoded = jwt.verify(auth, process.env.JWT_SECRET);
+        // Extract token from "Bearer <token>" format
+        const token = auth.startsWith('Bearer ') ? auth.slice(7) : auth;
+        const decoded = jwt.verify(token, process.env.JWT_SECRET);
         req.user = decoded;
         next();
     } catch (err) {

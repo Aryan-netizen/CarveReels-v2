@@ -1,0 +1,290 @@
+.my-orders-container {
+    min-height: 100vh;
+    background: #0a0a0a;
+    padding: 80px 20px 40px 20px;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+}
+
+.orders-header {
+    text-align: center;
+    color: white;
+    margin-bottom: 40px;
+}
+
+.orders-header h1 {
+    font-size: 2.5rem;
+    margin: 0 0 10px 0;
+    font-weight: 800;
+    background: linear-gradient(135deg, #ffa500 0%, #ff8c00 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.orders-header p {
+    font-size: 1rem;
+    margin: 0;
+    opacity: 0.7;
+    color: #ccc;
+}
+
+.loading {
+    text-align: center;
+    color: #ffa500;
+    font-size: 1.1rem;
+    padding: 60px 20px;
+}
+
+.orders-list {
+    max-width: 900px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.order-card {
+    background: #1a1a1a;
+    border-radius: 16px;
+    border: 1px solid #333;
+    overflow: hidden;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+    transition: all 0.3s ease;
+    animation: slideUp 0.6s ease-out;
+}
+
+.order-card:hover {
+    border-color: #ffa500;
+    box-shadow: 0 20px 50px rgba(255, 165, 0, 0.2);
+    transform: translateY(-4px);
+}
+
+.order-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+    border-bottom: 1px solid #333;
+    background: rgba(255, 165, 0, 0.05);
+}
+
+.order-info {
+    display: flex;
+    gap: 15px;
+    flex: 1;
+}
+
+.order-image {
+    width: 80px;
+    height: 80px;
+    border-radius: 12px;
+    object-fit: cover;
+    border: 2px solid #ffa500;
+}
+
+.order-details h3 {
+    margin: 0 0 5px 0;
+    font-size: 1.1rem;
+    color: #fff;
+    font-weight: 600;
+}
+
+.partner-name {
+    margin: 0 0 5px 0;
+    font-size: 0.9rem;
+    color: #ffa500;
+    font-weight: 500;
+}
+
+.order-id {
+    margin: 0;
+    font-size: 0.85rem;
+    color: #999;
+}
+
+.order-status {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    padding: 12px 20px;
+    border: 2px solid;
+    border-radius: 10px;
+    background: rgba(255, 165, 0, 0.05);
+}
+
+.status-emoji {
+    font-size: 1.5rem;
+}
+
+.status-text {
+    font-weight: 600;
+    font-size: 0.9rem;
+}
+
+.order-body {
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.order-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 15px;
+}
+
+.order-row .label {
+    font-weight: 600;
+    color: #999;
+    font-size: 0.95rem;
+    min-width: 150px;
+}
+
+.order-row .value {
+    color: #fff;
+    font-size: 0.95rem;
+    text-align: right;
+    flex: 1;
+}
+
+.order-row .value.total {
+    font-weight: 600;
+    color: #ffa500;
+    font-size: 1.1rem;
+}
+
+.order-actions {
+    display: flex;
+    gap: 10px;
+    padding: 15px 20px;
+    border-top: 1px solid #333;
+    background: #0a0a0a;
+}
+
+.cancel-order-btn,
+.contact-btn {
+    flex: 1;
+    padding: 12px 16px;
+    border: none;
+    border-radius: 8px;
+    font-size: 0.95rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.cancel-order-btn {
+    background: rgba(231, 76, 60, 0.1);
+    color: #e74c3c;
+    border: 1px solid #e74c3c;
+}
+
+.cancel-order-btn:hover {
+    background: rgba(231, 76, 60, 0.2);
+}
+
+.contact-btn {
+    background: linear-gradient(135deg, #ffa500 0%, #ff8c00 100%);
+    color: white;
+}
+
+.contact-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(255, 165, 0, 0.4);
+}
+
+.empty-state {
+    text-align: center;
+    padding: 80px 20px;
+    background: #1a1a1a;
+    border-radius: 20px;
+    border: 1px solid #333;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+    max-width: 500px;
+    margin: 0 auto;
+}
+
+.empty-icon {
+    font-size: 4rem;
+    margin-bottom: 20px;
+}
+
+.empty-state h2 {
+    margin: 0 0 10px 0;
+    font-size: 1.5rem;
+    color: #fff;
+}
+
+.empty-state p {
+    margin: 0 0 30px 0;
+    color: #999;
+    font-size: 1rem;
+}
+
+.explore-btn {
+    padding: 12px 30px;
+    background: linear-gradient(135deg, #ffa500 0%, #ff8c00 100%);
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: 600;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+}
+
+.explore-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 25px rgba(255, 165, 0, 0.4);
+}
+
+@keyframes slideUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@media (max-width: 768px) {
+    .my-orders-container {
+        padding: 20px;
+    }
+
+    .orders-header h1 {
+        font-size: 2rem;
+    }
+
+    .order-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 15px;
+    }
+
+    .order-status {
+        align-self: flex-start;
+    }
+
+    .order-row {
+        flex-direction: column;
+        gap: 5px;
+    }
+
+    .order-row .label {
+        min-width: auto;
+    }
+
+    .order-row .value {
+        text-align: left;
+    }
+
+    .order-actions {
+        flex-direction: column;
+    }
+}

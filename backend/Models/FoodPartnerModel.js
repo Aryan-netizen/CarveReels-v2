@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
-const UserSchema = new Schema({
+const FoodPartnerSchema = new Schema({
     name: {
         type: String,
         required: true,
@@ -17,18 +17,29 @@ const UserSchema = new Schema({
     image: {
         type: String
     },
+    businessName: {
+        type: String,
+    },
     bio: {
         type: String,
     },
-    savedReels: [{
-        type: mongoose.Schema.Types.ObjectId,
-        ref: 'food'
-    }],
+    followers: {
+        type: Number,
+        default: 0
+    },
+    reelsCount: {
+        type: Number,
+        default: 0
+    },
+    verified: {
+        type: Boolean,
+        default: false
+    },
     createdAt: {
         type: Date,
         default: Date.now
     }
 });
 
-const UserModel = mongoose.model('users', UserSchema);
-module.exports = UserModel;
+const FoodPartnerModel = mongoose.model('foodpartners', FoodPartnerSchema);
+module.exports = FoodPartnerModel;
