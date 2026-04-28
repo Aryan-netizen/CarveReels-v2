@@ -66,6 +66,9 @@ function Home() {
                     <button onClick={handleLogout} style={{ padding: '10px 20px', cursor: 'pointer' }}>
                         Logout
                     </button>
+                    <button onClick={()=>{navigate("/food")}}>
+                        Food
+                    </button>
                 </div>
             </div>
             

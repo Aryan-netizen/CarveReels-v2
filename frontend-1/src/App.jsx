@@ -6,6 +6,7 @@ import Home from './pages/Home';
 import { useState } from 'react';
 import RefrshHandler from '../RefrshHandler';
 import {GoogleOAuthProvider} from "@react-oauth/google"
+import FoodPost from './pages/FoodPost';
 
 
 function App() {
@@ -28,6 +29,7 @@ function App() {
         <Route path='/login' element={<GoogleWrapper />} />
         <Route path='/signup' element={<Signup />} />
         <Route path='/home' element={<PrivateRoute element={<Home />} />} />
+        <Route path='/food' element={<PrivateRoute element={<FoodPost />} />} />
       </Routes>
     </div>
   );

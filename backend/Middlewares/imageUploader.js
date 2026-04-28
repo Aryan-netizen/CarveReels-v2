@@ -18,14 +18,15 @@ const storage = new CloudinaryStorage({
     cloudinary: cloudinary,
     params:{
         folder:'social',
-        format: async(req,file)=>'png',
+        resource_type: 'auto',
         public_id:(req,file)=>file.originalname.split('.')[0]+"_"+Date.now()
     }
 })
+
 const CloudinaryFlieUploader = multer({storage})
-const uploadMultipleImage = CloudinaryFlieUploader.array('images',10)
-const uploadMultipleVideo = CloudinaryFlieUploader.array('videos',10)
+const uploadMultipleImage = CloudinaryFlieUploader.array('files', 10)
+const uploadMultipleVideo = CloudinaryFlieUploader.array('files', 10)
 const uploadOneImage = CloudinaryFlieUploader.single('images')
 const uploadOneVideo = CloudinaryFlieUploader.single('videos')
 
-module.exports = {uploadMultipleImage,uploadMultipleVideo,uploadOneImage,uploadOneVideo}
+module.exports = {uploadMultipleImage, uploadMultipleVideo, uploadOneImage, uploadOneVideo}
