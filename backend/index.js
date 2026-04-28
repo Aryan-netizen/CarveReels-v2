@@ -8,19 +8,19 @@ require('dotenv').config();
 require('./Models/db');
 const PORT = process.env.PORT || 8080;
 
-app.get('/ping', (req, res) => {
-    res.send('PONG');
-});
-
 app.use(express.json());
 app.use(cors(
     {
         origin: 'http://localhost:5173',
     }
 ));
+
+app.get('/ping', (req, res) => {
+    res.send('PONG');
+});
+
 app.use('/auth', AuthRouter);
 app.use('/products', ProductRouter);
-
 
 app.listen(PORT, () => {
     console.log(`Server is running on ${PORT}`)

@@ -11,7 +11,7 @@ import {GoogleOAuthProvider} from "@react-oauth/google"
 function App() {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const GoogleWrapper = ()=>(
-		<GoogleOAuthProvider clientId="21849335516-14jkiec20p15id7uta33b429u1c02npq.apps.googleusercontent.com">
+		<GoogleOAuthProvider clientId={import.meta.env.VITE_GOOGLE_CLIENT_ID}>
 			<Login></Login>
 		</GoogleOAuthProvider>
 	)
