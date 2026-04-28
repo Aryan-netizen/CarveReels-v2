@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import { useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import { ToastContainer } from 'react-toastify';
 import { handleError, handleSuccess } from '../../utils';
@@ -10,14 +10,28 @@ function Signup() {
         email: '',
         password: ''
     })
+    const [profileImage, setProfileImage] = useState(null);
+    const [imagePreview, setImagePreview] = useState(null);
 
     const navigate = useNavigate();
+    
     const handleChange = (e) => {
         const { name, value } = e.target;
-        console.log(name, value);
         const copySignupInfo = { ...signupInfo };
         copySignupInfo[name] = value;
         setSignupInfo(copySignupInfo);
+    }
+
+    const handleImageChange = (e) => {
+        const file = e.target.files[0];
+        if (file) {
+            setProfileImage(file);
+            const reader = new FileReader();
+            reader.onloadend = () => {
+                setImagePreview(reader.result);
+            };
+            reader.readAsDataURL(file);
+        }
     }
 
     const handleSignup = async (e) => {
@@ -26,14 +40,20 @@ function Signup() {
         if (!name || !email || !password) {
             return handleError('name, email and password are required')
         }
+        
         try {
+            const formData = new FormData();
+            formData.append('name', name);
+            formData.append('email', email);
+            formData.append('password', password);
+            if (profileImage) {
+                formData.append('images', profileImage);
+            }
+
             const url = `http://localhost:3000/auth/signup`;
             const response = await fetch(url, {
                 method: "POST",
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify(signupInfo)
+                body: formData
             });
             const result = await response.json();
             const { success, message, error } = result;
@@ -48,11 +68,11 @@ function Signup() {
             } else if (!success) {
                 handleError(message);
             }
-            console.log(result);
         } catch (err) {
             handleError(err);
         }
     }
+
     return (
         <div className='container'>
             <h1>Signup</h1>
@@ -87,6 +107,25 @@ function Signup() {
                         placeholder='Enter your password...'
                         value={signupInfo.password}
                     />
+                </div>
+                <div>
+                    <label htmlFor='profileImage'>Profile Picture</label>
+                    <input
+                        onChange={handleImageChange}
+                        type='file'
+                        name='profileImage'
+                        accept='image/*'
+                        placeholder='Upload your profile picture...'
+                    />
+                    {imagePreview && (
+                        <div style={{ marginTop: '10px' }}>
+                            <img 
+                                src={imagePreview} 
+                                alt='Profile Preview' 
+                                style={{ maxWidth: '100px', maxHeight: '100px', borderRadius: '50%' }}
+                            />
+                        </div>
+                    )}
                 </div>
                 <button type='submit'>Signup</button>
                 <span>Already have an account ?

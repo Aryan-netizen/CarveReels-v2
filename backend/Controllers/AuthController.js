@@ -6,12 +6,36 @@ const UserModel = require("../Models/UserModel");
 const signup = async (req, res) => {
     try {
         const { name, email, password } = req.body;
+        console.log('Signup request body:', { name, email, password });
+        console.log('File:', req.file);
+        
+        // Validate inputs
+        if (!name || !email || !password) {
+            return res.status(400).json({
+                message: "name, email and password are required",
+                success: false
+            });
+        }
+        
         const user = await UserModel.findOne({ email });
         if (user) {
             return res.status(409)
                 .json({ message: 'User is already exist, you can login', success: false });
         }
-        const userModel = new UserModel({ name, email, password });
+        
+        let profileImage = null;
+        if (req.file) {
+            profileImage = req.file.path;
+            console.log('Profile image URL:', profileImage);
+        }
+        
+        const userModel = new UserModel({ 
+            name, 
+            email, 
+            password,
+            image: profileImage
+        });
+        
         userModel.password = await bcrypt.hash(password, 10);
         await userModel.save();
         res.status(201)
@@ -20,10 +44,12 @@ const signup = async (req, res) => {
                 success: true
             })
     } catch (err) {
+        console.error('Signup error:', err);
         res.status(500)
             .json({
-                message: "Internal server errror",
-                success: false
+                message: "Internal server error",
+                success: false,
+                error: err.message
             })
     }
 }
