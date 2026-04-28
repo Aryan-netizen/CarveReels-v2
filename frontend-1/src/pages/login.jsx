@@ -2,13 +2,37 @@ import React, { useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import { ToastContainer } from 'react-toastify';
 import { handleError, handleSuccess } from '../../utils';
-
+import {useGoogleLogin} from "@react-oauth/google"
 function Login() {
+
 
     const [loginInfo, setLoginInfo] = useState({
         email: '',
         password: ''
     })
+    const responseGoogle = async (authResult) => {
+		try {
+			if (authResult["code"]) {
+				const result = await googleAuth(authResult.code);
+				const {email, name, image} = result.data.user;
+				const token = result.data.token;
+				const obj = {email,name, token, image};
+				localStorage.setItem('user-info',JSON.stringify(obj));
+				navigate('/dashboard');
+			} else {
+				console.log(authResult);
+				throw new Error(authResult);
+			}
+		} catch (e) {
+			console.log('Error while Google Login...', e);
+		}
+	};
+
+	const googleLogin = useGoogleLogin({
+		onSuccess: responseGoogle,
+		onError: responseGoogle,
+		flow: "auth-code",
+	});
 
     const navigate = useNavigate();
 
