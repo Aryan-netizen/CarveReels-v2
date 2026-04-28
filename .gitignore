@@ -23,3 +23,5 @@
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
+/frontend-1/.env
+/frontend-1/node_modules
