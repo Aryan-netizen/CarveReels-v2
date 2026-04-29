@@ -116,6 +116,8 @@ function ReelsView() {
                             <video 
                                 src={reel.video}
                                 controls
+                                autoPlay
+                                loop
                                 className="reel-video"
                             />
                             <img 
@@ -176,11 +178,6 @@ function ReelsView() {
                     onOrderSuccess={handleOrderSuccess}
                 />
             )}
-        </div>
-    )
-}
-
-export default ReelsView
 
             {showMenuModal && selectedFoodPartnerId && (
                 <FoodPartnerMenu 
@@ -188,3 +185,8 @@ export default ReelsView
                     onClose={() => setShowMenuModal(false)}
                 />
             )}
+        </div>
+    )
+}
+
+export default ReelsView
