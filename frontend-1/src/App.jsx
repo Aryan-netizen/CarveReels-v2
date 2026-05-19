@@ -1,18 +1,18 @@
 import { Navigate, Route, Routes } from 'react-router-dom';
 import './App.css';
-import Login from './pages/Login';
-import Signup from './pages/Signup';
-import RoleSelection from './pages/RoleSelection';
-import Home from './pages/Home';
+import Login from './pages/Login.jsx';
+import Signup from './pages/Signup.jsx';
+import RoleSelection from './pages/RoleSelection.jsx';
+import Home from './pages/Home.jsx';
 import { useState } from 'react';
-import RefrshHandler from '../RefrshHandler';
+import RefrshHandler from '../RefrshHandler.js';
 import {GoogleOAuthProvider} from "@react-oauth/google"
-import UploadReel from './pages/UploadReel';
-import ReelsView from './pages/ReelsView';
-import MyReels from './pages/MyReels';
-import MyOrders from './pages/MyOrders';
-import MenuManagement from './pages/MenuManagement';
-import Navbar from './components/Navbar';
+import UploadReel from './pages/UploadReel.jsx';
+import ReelsView from './pages/ReelsView.jsx';
+import MyReels from './pages/MyReels.jsx';
+import MyOrders from './pages/MyOrders.jsx';
+import MenuManagement from './pages/MenuManagement.jsx';
+import Navbar from './components/Navbar.jsx';
 
 
 function App() {
