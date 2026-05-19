@@ -5,7 +5,7 @@ const app = express();
 const cors = require('cors');
 const UserAuthRouter = require('./Routes/UserAuthRouter');
 const FoodPartnerAuthRouter = require('./Routes/FoodPartnerAuthRouter');
-const ProductRouter = require('./Routes/ProductRouter');
+// const ProductRouter = require('./Routes/ProductRouter');
 const FoodRouter = require('./Routes/FoodRouter');
 const OrderRouter = require('./Routes/OrderRouter');
 const MenuRouter = require('./Routes/MenuRouter');
@@ -31,7 +31,7 @@ app.use('/auth/user', UserAuthRouter);
 // Food Partner authentication routes
 app.use('/auth/foodpartner', FoodPartnerAuthRouter);
 
-app.use('/products', ProductRouter);
+// app.use('/products', ProductRouter);
 app.use('/food', FoodRouter);
 app.use('/orders', OrderRouter);
 app.use('/menu', MenuRouter);
