@@ -32,7 +32,7 @@ function EditReelModal({ reel, onClose, onUpdate }) {
             formDataToSend.append('category', formData.category);
             formDataToSend.append('preparationTime', formData.preparationTime);
 
-            const response = await fetch(`http://localhost:3000/food/${reel._id}`, {
+            const response = await fetch(`https://carvereels-v2-gaxl.onrender.com/food/${reel._id}`, {
                 method: 'PUT',
                 headers: {
                     'Authorization': localStorage.getItem('token')

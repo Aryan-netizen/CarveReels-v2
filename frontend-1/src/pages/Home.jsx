@@ -15,7 +15,7 @@ function Home() {
 
     const fetchUserData = async () => {
         try {
-            const url = "http://localhost:3000/products";
+            const url = "https://carvereels-v2-gaxl.onrender.com/products";
             const response = await fetch(url, {
                 headers: {
                     'Authorization': localStorage.getItem('token')

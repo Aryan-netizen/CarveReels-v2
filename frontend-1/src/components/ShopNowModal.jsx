@@ -37,7 +37,7 @@ function ShopNowModal({ reel, onClose, onOrderSuccess }) {
         setLoading(true);
         try {
             const token = localStorage.getItem('token');
-            const response = await fetch('http://localhost:3000/orders/create', {
+            const response = await fetch('https://carvereels-v2-gaxl.onrender.com/orders/create', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',

@@ -12,7 +12,7 @@ function FoodPartnerMenu({ foodPartnerId, onClose }) {
 
     const fetchMenuItems = async () => {
         try {
-            const response = await fetch(`http://localhost:3000/menu/partner/${foodPartnerId}`);
+            const response = await fetch(`https://carvereels-v2-gaxl.onrender.com/menu/partner/${foodPartnerId}`);
             const result = await response.json();
 
             if (result.success) {

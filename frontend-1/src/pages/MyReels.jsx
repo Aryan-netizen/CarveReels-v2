@@ -14,7 +14,7 @@ function MyReels() {
 
     const fetchUserReels = async () => {
         try {
-            const url = "http://localhost:3000/food/user/reels";
+            const url = "https://carvereels-v2-gaxl.onrender.com/food/user/reels";
             const response = await fetch(url, {
                 headers: {
                     'Authorization': localStorage.getItem('token')
@@ -39,7 +39,7 @@ function MyReels() {
 
         setDeleting(reelId);
         try {
-            const response = await fetch(`http://localhost:3000/food/${reelId}`, {
+            const response = await fetch(`https://carvereels-v2-gaxl.onrender.com/food/${reelId}`, {
                 method: 'DELETE',
                 headers: {
                     'Authorization': localStorage.getItem('token')

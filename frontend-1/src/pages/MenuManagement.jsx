@@ -25,7 +25,7 @@ function MenuManagement() {
     const fetchMenuItems = async () => {
         try {
             const token = localStorage.getItem('token');
-            const response = await fetch('http://localhost:3000/menu/my-items', {
+            const response = await fetch('https://carvereels-v2-gaxl.onrender.com/menu/my-items', {
                 headers: {
                     'Authorization': `Bearer ${token}`
                 }
@@ -91,8 +91,8 @@ function MenuManagement() {
             }
 
             const url = editingItem 
-                ? `http://localhost:3000/menu/update/${editingItem._id}`
-                : 'http://localhost:3000/menu/add';
+                ? `https://carvereels-v2-gaxl.onrender.com/menu/update/${editingItem._id}`
+                : 'https://carvereels-v2-gaxl.onrender.com/menu/add';
 
             const method = editingItem ? 'PUT' : 'POST';
 
@@ -142,7 +142,7 @@ function MenuManagement() {
 
         try {
             const token = localStorage.getItem('token');
-            const response = await fetch(`http://localhost:3000/menu/delete/${itemId}`, {
+            const response = await fetch(`https://carvereels-v2-gaxl.onrender.com/menu/delete/${itemId}`, {
                 method: 'DELETE',
                 headers: {
                     'Authorization': `Bearer ${token}`
@@ -166,7 +166,7 @@ function MenuManagement() {
     const toggleAvailability = async (itemId, currentStatus) => {
         try {
             const token = localStorage.getItem('token');
-            const response = await fetch(`http://localhost:3000/menu/toggle-availability/${itemId}`, {
+            const response = await fetch(`https://carvereels-v2-gaxl.onrender.com/menu/toggle-availability/${itemId}`, {
                 method: 'POST',
                 headers: {
                     'Authorization': `Bearer ${token}`

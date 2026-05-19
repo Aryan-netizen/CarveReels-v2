@@ -15,7 +15,7 @@ function MyOrders() {
     const fetchOrders = async () => {
         try {
             const token = localStorage.getItem('token');
-            const response = await fetch('http://localhost:3000/orders/my-orders', {
+            const response = await fetch('https://carvereels-v2-gaxl.onrender.com/orders/my-orders', {
                 headers: {
                     'Authorization': `Bearer ${token}`
                 }
@@ -40,7 +40,7 @@ function MyOrders() {
 
         try {
             const token = localStorage.getItem('token');
-            const response = await fetch('http://localhost:3000/orders/cancel', {
+            const response = await fetch('https://carvereels-v2-gaxl.onrender.com/orders/cancel', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',

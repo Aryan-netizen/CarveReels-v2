@@ -72,7 +72,7 @@ function Signup() {
             }
 
             const endpoint = role === 'foodpartner' ? 'foodpartner' : 'user';
-            const url = `http://localhost:3000/auth/${endpoint}/signup`;
+            const url = `https://carvereels-v2-gaxl.onrender.com/auth/${endpoint}/signup`;
             const response = await fetch(url, {
                 method: "POST",
                 body: formData

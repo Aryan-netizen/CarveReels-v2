@@ -64,7 +64,7 @@ function UploadReel() {
             formData.append('files', video);
 
             const token = localStorage.getItem('token');
-            const url = "http://localhost:3000/food";
+            const url = "https://carvereels-v2-gaxl.onrender.com/food";
             const response = await fetch(url, {
                 method: "POST",
                 headers: {

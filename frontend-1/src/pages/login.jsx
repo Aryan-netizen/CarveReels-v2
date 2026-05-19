@@ -35,7 +35,7 @@ function Login() {
       const { email, name, picture } = userRes.data;
       
       const endpoint = userType === 'foodpartner' ? 'foodpartner' : 'user';
-      const url = `http://localhost:3000/auth/${endpoint}/google-login`;
+      const url = `https://carvereels-v2-gaxl.onrender.com/auth/${endpoint}/google-login`;
       const response = await fetch(url, {
         method: "POST",
         headers: {
@@ -82,7 +82,7 @@ function Login() {
     setLoading(true);
     try {
       const endpoint = userType === 'foodpartner' ? 'foodpartner' : 'user';
-      const url = `http://localhost:3000/auth/${endpoint}/login`;
+      const url = `https://carvereels-v2-gaxl.onrender.com/auth/${endpoint}/login`;
       const response = await fetch(url, {
         method: "POST",
         headers: {

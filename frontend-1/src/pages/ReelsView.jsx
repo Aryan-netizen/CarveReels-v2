@@ -21,7 +21,7 @@ function ReelsView() {
         
         setLoading(true);
         try {
-            const url = `http://localhost:3000/food?page=${pageNum}`;
+            const url = `https://carvereels-v2-gaxl.onrender.com/food?page=${pageNum}`;
             const response = await fetch(url);
             const result = await response.json();
             
