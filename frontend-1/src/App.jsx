@@ -1,6 +1,6 @@
 import { Navigate, Route, Routes } from 'react-router-dom';
 import './App.css';
-import Login from './pages/Login.jsx';
+import Login from './components/Login.jsx';
 import Signup from './pages/Signup.jsx';
 import RoleSelection from './pages/RoleSelection.jsx';
 import Home from './pages/Home.jsx';
